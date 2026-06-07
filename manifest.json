@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Polymarket AI Agent Trader",
+  "version": "1.0.0",
+  "description": "Conversational AI Agent for Polymarket trading and real-time xapi sentiment analysis.",
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://*.polymarket.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://polymarket.com/event/*",
+        "https://polymarket.com/zh/event/*",
+        "https://*.polymarket.com/event/*",
+        "https://*.polymarket.com/zh/event/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  }
+}

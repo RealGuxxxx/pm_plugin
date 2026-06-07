@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="基于 Polymarket 和 xapi 的下一代 AI 预测市场交易助手。支持更细粒度订单、实时 AI 情绪决策和无风险模拟盘交易。">
+  
+  <title>Polymarket AI Agent Trader | 预测市场 AI 自动交易与情绪分析助手</title>
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Structural Grid Background -->
+  <div class="background-grid"></div>
+  
+  <!-- Subtle Film Noise -->
+  <div class="noise-overlay"></div>
+
+  <!-- Header & Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" id="nav-logo-link">
+        <svg viewBox="0 0 24 24">
+          <path d="M19,8H17.82A4.89,4.89,0,0,0,13,4V3a1,1,0,0,0-2,0V4A4.89,4.89,0,0,0,6.18,8H5a3,3,0,0,0-3,3v3a3,3,0,0,0,3,3H6.18A4.89,4.89,0,0,0,11,20v1a1,1,0,0,0,2,0V20a4.89,4.89,0,0,0,4.82-3H19a3,3,0,0,0,3-3V11A3,3,0,0,0,19,8ZM11,6A2.9,2.9,0,0,1,13.8,8.7L12,10.5,10.2,8.7A2.9,2.9,0,0,1,11,6ZM5,15a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H6v5Zm12,1a2.9,2.9,0,0,1-2.82-2H9.82A2.9,2.9,0,0,1,7,16V10a2.9,2.9,0,0,1,2.82-2h4.36A2.9,2.9,0,0,1,17,10ZM20,14a1,1,0,0,1-1,1H18V10h1a1,1,0,0,1,1,1Z"/>
+        </svg>
+        <span>PM Agent</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features" id="nav-features">功能特性</a></li>
+        <li><a href="#install" id="nav-install">安装指南</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#install" class="btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;" id="nav-start-btn">快速上手</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      
+      <!-- Hero Left: Text & Info -->
+      <div class="hero-content" data-reveal>
+        <div class="hero-badge">
+          <div class="hero-badge-status"></div>
+          <span>v1.0.0 稳定版已发布</span>
+        </div>
+        <h1 class="hero-title">Polymarket<br><span class="highlight">AI Agent</span> Trader</h1>
+        <p class="hero-desc">
+          集成于浏览器侧的 Polymarket 对话式交易套件。通过 xapi 深度扫描社交媒体舆论与实时新闻，结合 Gemini API 辅助决策，助您在多变的市场中快速理清意图，并实现更细粒度的模拟/实盘交易订单执行。
+        </p>
+        <div class="hero-actions">
+          <a href="#install" class="btn-primary" id="hero-dl-btn">
+            <span>立即配置安装</span>
+            <span class="btn-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L15.17 10H3v2h12.17l-4.59 4.59L12 18l8-8z"/></svg>
+            </span>
+          </a>
+          <a href="#features" class="btn-secondary" id="hero-features-btn">探索核心特性</a>
+        </div>
+      </div>
+
+      <!-- Hero Right: Dynamic Chat Simulator (Light Theme) -->
+      <div class="agent-preview-shell" data-reveal>
+        <div class="window-frame">
+          <!-- Window Title Bar -->
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+            </div>
+            <div class="window-title">POLYMARKET AGENT TERMINAL</div>
+            <div class="window-action-btn"></div>
+          </div>
+          
+          <!-- Animated Agent Conversations -->
+          <div class="agent-chat-container" id="hero-chat-box">
+            <!-- Bubbles injected dynamically by JS -->
+          </div>
+          
+          <!-- Input Bar -->
+          <div class="chat-input-area">
+            <input type="text" class="chat-input-box" id="hero-chat-input" placeholder="输入您的交易指令或分析需求..." readonly>
+            <button class="chat-send-btn" id="hero-chat-send">
+              <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Bento Features Grid Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      
+      <div class="bento-header" style="text-align: center;" data-reveal>
+        <span class="eyebrow">三大核心能力</span>
+        <h2>专为预测市场设计的高效决策引擎</h2>
+        <p style="margin: 1rem auto 0; text-align: center;">插件原生植入 Polymarket 盘口页面，无需切换窗口，为您的每次交易提供从数据、决策到执行的闭环辅助。</p>
+      </div>
+      
+      <div class="bento-grid">
+        
+        <!-- Bento 1: AI Sentiment Decision (Colspan 2) -->
+        <div class="outer-shell bento-card-large" data-reveal>
+          <div class="inner-core">
+            <div class="bento-body">
+              <div class="bento-title">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                <h3>实时 AI 辅助决策与社交信号扫描</h3>
+              </div>
+              <p>
+                通过集成的 xapi 局域桥接，AI 会即时扫描并过滤 Twitter/X 上的最新论调与大户动向，并在侧边栏给出统一的<strong>市场情绪指数</strong>。同时，配合 Gemini 对 Polymarket 原生评论区进行情感极性提取，帮助您快速识别多空基本面变动，避免情绪过热追高。
+              </p>
+              
+              <!-- Sentiment Dashboard Preview -->
+              <div class="feature-sentiment-preview">
+                <div class="sentiment-index-wheel">
+                  <span class="wheel-value">68%</span>
+                  <span class="wheel-label">X 舆论看好 YES</span>
+                </div>
+                <div class="sentiment-tweets-ticker">
+                  <div class="ticker-tweet">
+                    <div class="tweet-author">Alpha Alerts (@AlphaAlerts)</div>
+                    <div class="tweet-text">YES 合约大单买入，美政府新表态刺激概率上升...</div>
+                  </div>
+                  <div class="ticker-tweet" style="border-left-color: var(--danger);">
+                    <div class="tweet-author">Trader K (@TraderK)</div>
+                    <div class="tweet-text">多空博弈异常激烈，注意限价单保护，别吃点差。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bento 2: Simulated Trading Mode (Colspan 1) -->
+        <div class="outer-shell bento-card-small" data-reveal>
+          <div class="inner-core">
+            <div class="bento-body">
+              <div class="bento-title">
+                <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                <h3>无风险模拟盘仿真交易</h3>
+              </div>
+              <p>
+                无需连接实盘钱包或质押真实资金。系统默认开启<strong>模拟仓位机制</strong>，并赠送 1000 USDC 的模拟仿真代币余额。您可以通过 AI 对话直接操作模拟买入/卖出，并通过控制台直接兑换和赎回余额，方便在真实下单前复盘策略。
+              </p>
+              
+              <!-- Simulated Wallet UI -->
+              <div class="feature-wallet-preview">
+                <div class="wallet-balance-row">
+                  <span class="balance-title">模拟钱包余额</span>
+                  <span class="balance-amount">$1,542.80 USDC</span>
+                </div>
+                <div class="wallet-position">
+                  <div class="position-item">
+                    <span>伊和平协定 YES</span>
+                    <span style="color: var(--success);">+12.4%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bento 3: Fine-grained Orders (Colspan 1) -->
+        <div class="outer-shell bento-card-small" data-reveal>
+          <div class="inner-core">
+            <div class="bento-body">
+              <div class="bento-title">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v-2H7v-2h7v-2H7V7h7v10zm3-2h-2V7h2v8z"/></svg>
+                <h3>更细粒度的条件订单</h3>
+              </div>
+              <p>
+                不仅支持标准市价单（Market Order）。AI 会根据您的口头交易指令，智能解析出<strong>限价（Limit Price）</strong>以及止损、离场价位。并在下单卡片中动态展示点差与预期持有份额，彻底改变在网页端手动繁琐计算的现状。
+              </p>
+              
+              <!-- Order Slip Preview -->
+              <div class="feature-orders-preview">
+                <div class="order-type-tabs">
+                  <div class="order-tab">市价单</div>
+                  <div class="order-tab active">限价单</div>
+                </div>
+                <div class="order-field-row">
+                  <span class="order-field-label">目标限价</span>
+                  <span class="order-field-value">$0.450 / 份</span>
+                </div>
+                <div class="order-field-row">
+                  <span class="order-field-label">最大滑点限制</span>
+                  <span class="order-field-value" style="color: var(--primary);">0.5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bento 4: xapi Bridge Daemon (Colspan 2) -->
+        <div class="outer-shell bento-card-large" data-reveal>
+          <div class="inner-core">
+            <div class="bento-body">
+              <div class="bento-title">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <h3>强大的 xapi 局域桥接守护进程</h3>
+              </div>
+              <p>
+                突破传统 Chrome 插件沙盒环境的安全限制。通过在本地启动一个轻量级的 Node.js Daemon，将插件与终端强大的 <code>xapi-to</code> 与 <code>goose</code> 引擎无缝桥接。在保障隐私和私钥安全的前提下，使 AI Agent 能够并发调度终端 CLI 工具。
+              </p>
+              <div class="daemon-log-panel">
+                <span style="color: #10b981;">[xapi Daemon]</span> HTTP bridge active on <span style="color: #60a5fa;">http://localhost:3000</span><br>
+                <span style="color: #10b981;">[xapi Daemon]</span> Routed GET /twitter_signals?query=Iran%20Peace -> CLI search<br>
+                <span style="color: #10b981;">[xapi Daemon]</span> Routed POST /goose_chat -> AI execution sandbox
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Quick Start Installation Section -->
+  <section id="install" class="quickstart-section">
+    <div class="container quickstart-grid">
+      
+      <!-- Left column: Steps -->
+      <div class="hero-content" data-reveal>
+        <span class="eyebrow">快速配置</span>
+        <h2>5分钟完成部署，开启智能交易</h2>
+        <p style="margin-bottom: 2rem;">Polymarket AI Agent 是一款开发中的解压插件，您只需将其克隆至本地并在 Chrome 中加载，运行一个轻量级的本地桥接服务，即可解锁完全体交易助手。</p>
+        
+        <div class="quickstart-steps">
+          
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <h3>克隆或获取代码仓</h3>
+              <p>将当前插件的代码目录保存在本地计算机上，准备加载入浏览器。</p>
+            </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <h3>以“开发者模式”载入 Chrome</h3>
+              <p>打开 Chrome，访问 <code>chrome://extensions/</code>，勾选右上角的<strong>“开发者模式”</strong>，点击<strong>“加载已解压的扩展程序”</strong>，选择插件文件夹即可。</p>
+            </div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <h3>运行 xapi 本地桥接服务</h3>
+              <p>在插件文件夹目录下打开终端，安装并运行 Node 桥接守护进程。该程序将开启 3000 端口，用于安全调用 xapi 舆情搜索与 CLI 服务。</p>
+              <div class="step-code-wrapper">
+                <code id="code-daemon">node xapi_daemon.js</code>
+                <button class="copy-btn" onclick="copyText('code-daemon')" title="复制命令">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <h3>激活 Gemini API 密钥</h3>
+              <p>点击浏览器右上角插件图标，进入<strong>控制台 (Dashboard)</strong>，输入您的 Gemini API 密钥（用于社交舆论的情感极性提炼）即可完全激活。</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Right column: Dynamic Shell mockup visual -->
+      <div class="quickstart-visual" data-reveal>
+        <div class="terminal-mock">
+          <div class="terminal-header">
+            <div class="window-dots">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+            </div>
+            <div class="terminal-title">bash - xapi_daemon</div>
+          </div>
+          <div class="terminal-body" id="terminal-screen">
+            <div class="terminal-line"><span class="terminal-prompt">$</span><span class="terminal-cmd">node xapi_daemon.js</span></div>
+            <div class="terminal-line"><span class="terminal-out">======================================================</span></div>
+            <div class="terminal-line"><span class="terminal-out">Polymarket AI Agent xapi Daemon running at:</span></div>
+            <div class="terminal-line"><span class="terminal-out">👉 http://localhost:3000</span></div>
+            <div class="terminal-line"><span class="terminal-out">======================================================</span></div>
+            <div class="terminal-line"><span class="terminal-success-text">[xapi Daemon] Daemon Online & Listening...</span></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M19,8H17.82A4.89,4.89,0,0,0,13,4V3a1,1,0,0,0-2,0V4A4.89,4.89,0,0,0,6.18,8H5a3,3,0,0,0-3,3v3a3,3,0,0,0,3,3H6.18A4.89,4.89,0,0,0,11,20v1a1,1,0,0,0,2,0V20a4.89,4.89,0,0,0,4.82-3H19a3,3,0,0,0,3-3V11A3,3,0,0,0,19,8ZM11,6A2.9,2.9,0,0,1,13.8,8.7L12,10.5,10.2,8.7A2.9,2.9,0,0,1,11,6ZM5,15a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H6v5Zm12,1a2.9,2.9,0,0,1-2.82-2H9.82A2.9,2.9,0,0,1,7,16V10a2.9,2.9,0,0,1-2.82-2h4.36A2.9,2.9,0,0,1,17,10ZM20,14a1,1,0,0,1-1,1H18V10h1a1,1,0,0,1,1,1Z"/>
+        </svg>
+        <span>Polymarket AI Agent Trader</span>
+      </a>
+      <p class="footer-copy">© 2026 Polymarket AI Agent Extension. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Javascript for Interactions and Mock simulations -->
+  <script>
+    // --- 1. Reveal Elements on Scroll (Intersection Observer) ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealElements = document.querySelectorAll("[data-reveal]");
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target); // Reveal once
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+      
+      revealElements.forEach(el => observer.observe(el));
+      
+      // Auto-trigger first viewport elements
+      setTimeout(() => {
+        const heroElements = document.querySelectorAll("#hero [data-reveal]");
+        heroElements.forEach(el => el.classList.add("revealed"));
+      }, 200);
+      
+      // Start dynamic chat simulation
+      startChatSimulation();
+    });
+
+    // --- 2. Copy to Clipboard Helper ---
+    function copyText(elementId) {
+      const textToCopy = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("命令已复制到剪切板!");
+      }).catch(err => {
+        console.error("复制失败: ", err);
+      });
+    }
+
+    // --- 3. Dynamic Chat Simulation Script ---
+    const chatBox = document.getElementById("hero-chat-box");
+    const chatInput = document.getElementById("hero-chat-input");
+    const sendBtn = document.getElementById("hero-chat-send");
+
+    const simConversation = [
+      {
+        sender: 'user',
+        text: '帮我分析一下伊朗和平协议市场的推特舆论。',
+        delay: 1000
+      },
+      {
+        sender: 'agent',
+        text: '正在通过 xapi 本地桥接服务扫描相关推文及新闻数据... 分析完成。<br><br><strong>市场舆论指数：</strong> 68% 偏向看好 YES 达成和平协议。<br><br><strong>社交媒体动向：</strong> 多个分析大户（如 @AlphaAlerts）在讨论油价制裁减免条款的早期敲定，买入 YES 的势头较猛；但保守舆论仍在警惕核查机制导致的延期风险。',
+        delay: 2000
+      },
+      {
+        sender: 'user',
+        text: '好，帮我模拟买入 20 USDC 的 YES 合约。',
+        delay: 1500
+      },
+      {
+        sender: 'agent',
+        text: '已通过本地算法成功解析您的交易意图。当前环境已锁定<strong>模拟交易盘</strong>（不扣除真实资产）。请核对订单：',
+        isOrder: true,
+        orderData: {
+          market: '伊朗于6月30日前签署和平协议',
+          type: '买入 (BUY)',
+          outcome: 'YES',
+          priceType: '市价单 (Market)',
+          amount: '$20.00 USDC'
+        },
+        delay: 1800
+      }
+    ];
+
+    function createBubble(sender, contentHTML, isOrder = false, orderData = null) {
+      const bubble = document.createElement("div");
+      bubble.classList.add("chat-bubble", sender);
+      
+      if (isOrder && orderData) {
+        let orderHtml = `<p>${contentHTML}</p>
+        <div class="parsed-order-card">
+          <div class="parsed-card-header">
+            <span>交易意图已解析</span>
+            <span style="color: var(--success); font-weight:700;">模拟盘</span>
+          </div>
+          <div class="parsed-card-row">
+            <span>市场：</span>
+            <span>${orderData.market}</span>
+          </div>
+          <div class="parsed-card-row">
+            <span>方向：</span>
+            <span>${orderData.type}</span>
+          </div>
+          <div class="parsed-card-row">
+            <span>合约：</span>
+            <span>${orderData.outcome}</span>
+          </div>
+          <div class="parsed-card-row">
+            <span>类型：</span>
+            <span>${orderData.priceType}</span>
+          </div>
+          <div class="parsed-card-row">
+            <span>金额：</span>
+            <span>${orderData.amount}</span>
+          </div>
+          <div class="parsed-card-confirm">✓ 模拟订单已执行成功</div>
+        </div>`;
+        bubble.innerHTML = orderHtml;
+      } else {
+        bubble.innerHTML = contentHTML;
+      }
+      
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function startChatSimulation() {
+      // Loop conversation infinitely
+      while (true) {
+        chatBox.innerHTML = ''; // clear
+        chatInput.value = '';
+        
+        for (const msg of simConversation) {
+          await new Promise(resolve => setTimeout(resolve, msg.delay));
+          
+          if (msg.sender === 'user') {
+            // Typing effect in input box before bubble appears
+            chatInput.value = '';
+            for (let i = 0; i < msg.text.length; i++) {
+              chatInput.value += msg.text[i];
+              await new Promise(resolve => setTimeout(resolve, 50));
+            }
+            sendBtn.style.transform = 'scale(1.1)';
+            await new Promise(resolve => setTimeout(resolve, 200));
+            sendBtn.style.transform = 'scale(1)';
+            
+            // Create bubble and clear input
+            createBubble('user', msg.text);
+            chatInput.value = '';
+          } else {
+            createBubble('agent', msg.text, msg.isOrder, msg.orderData);
+          }
+        }
+        
+        // Wait 6 seconds at the end of conversation, then repeat
+        await new Promise(resolve => setTimeout(resolve, 6000));
+      }
+    }
+  </script>
+</body>
+</html>

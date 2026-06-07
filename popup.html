@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Polymarket AI Agent Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #131926;
+      --border: #1e293b;
+      --primary: #004BFF;
+      --primary-hover: #003ccf;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --danger: #ef4444;
+      --success: #10b981;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px 16px;
+      width: 280px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    /* Toggle Switch block */
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+
+    .toggle-label-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .toggle-title {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .toggle-desc {
+      font-size: 9.5px;
+      color: var(--text-secondary);
+    }
+
+    /* Switch Slider styling */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--border);
+      transition: .3s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .btn {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 75, 255, 0.15);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <svg viewBox="0 0 24 24">
+      <path d="M19,8H17.82A4.89,4.89,0,0,0,13,4V3a1,1,0,0,0-2,0V4A4.89,4.89,0,0,0,6.18,8H5a3,3,0,0,0-3,3v3a3,3,0,0,0,3,3H6.18A4.89,4.89,0,0,0,11,20v1a1,1,0,0,0,2,0V20a4.89,4.89,0,0,0,4.82-3H19a3,3,0,0,0,3-3V11A3,3,0,0,0,19,8ZM11,6A2.9,2.9,0,0,1,13.8,8.7L12,10.5,10.2,8.7A2.9,2.9,0,0,1,11,6ZM5,15a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H6v5Zm12,1a2.9,2.9,0,0,1-2.82-2H9.82A2.9,2.9,0,0,1,7,16V10a2.9,2.9,0,0,1,2.82-2h4.36A2.9,2.9,0,0,1,17,10ZM20,14a1,1,0,0,1-1,1H18V10h1a1,1,0,0,1,1,1Z"/>
+    </svg>
+    Polymarket AI Agent
+  </h1>
+  <div class="subtitle">AI 预测市场自动交易及情绪分析助手</div>
+
+  <!-- Enable Switch -->
+  <div class="toggle-group">
+    <div class="toggle-label-container">
+      <div class="toggle-title">启用 AI 交易助手</div>
+      <div class="toggle-desc">开启以在页面中加载对话终端</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="extension-enabled">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <button class="btn" id="open-options-btn">
+    <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: white;"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+    打开管理控制台 (Dashboard)
+  </button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
